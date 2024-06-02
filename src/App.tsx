@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export const VideoHeader = (props: {videoName: string}) => {
+    return <div>
+        😀 {props.videoName}
+    </div>
+}
+export const VideoContent = (props: {videoContent: string}) => {
+    return <div>
+        📼 <a href={props.videoContent}>{props.videoContent}</a>
+    </div>
+}
+export const VideoDescription = (props: {videoDescription: string}) => {
+    return <div>
+        📑 {props.videoDescription}
+    </div>
+}
+export const YoutubeVideo = (props: any) => {
+    return <div>
+        <VideoHeader videoName={props.video.title} />
+        <VideoContent videoContent={props.video.link} />
+        <VideoDescription videoDescription={props.video.description} />
+    </div>
+}
+export const App = () => {
+    const video = {
+        title: 'Samurai way',
+        link: 'https://www.youtube.com/watch?v=gb7gMluAeao&list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8',
+        description: 'Best free react-course'
+    }
+    return <YoutubeVideo video={video} />
 }
 
 export default App
